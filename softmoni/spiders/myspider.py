@@ -22,19 +22,14 @@ class SoftmoniSpider(scrapy.Spider):
 
 
 	def parseDetails(self, response): 
-		#title = repr(response.css('h1.media-app__title ::text').extract_first()) 
 		name = response.xpath('//h1[@class=$val]/text()', val='media-app__title').extract_first()
 		vers = response.xpath('//h1[@class=$val]/span/text()', val='media-app__title').extract_first()
 		try: 
 			title = '{:s} {:s}'.format(name, vers)
 		except:
 			title = '{:s}'.format(name)
-		#description = repr(response.css('article.app-softonic-review__content').extract_first()) 
 		description = response.xpath('normalize-space(.//*[@id="app-softonic-review"]/article)').extract_first()
-		#screenshots = repr(response.css('a.gallery__media-links ::attr(href)').extract()) 
-		#os = repr(response.css('p.app-specs__value[itemprop=operatingSystem] ::text').extract_first())
 		os = response.xpath('normalize-space(.//p[@itemprop=$val]/text())', val='operatingSystem').extract_first()
-		#dl = repr(response.css('div.app-specs li:nth-child(3) p ::text').extract_first()) 
 		#yield ImagedownloadItem( 
 			#	image_urls = screenshots 
 			#) 
