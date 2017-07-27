@@ -13,12 +13,12 @@ class SoftmoniSpider(scrapy.Spider):
 			strpath = '//*[@id="program_list"]/li[{:d}]/a/@href'.format(IND)
 			path = item.xpath(strpath).extract_first()
 			yield scrapy.Request(path, callback = self.parseDetails)
-			IND += 1
-    		#yield scrapy.Request(path + '/download', callback = self.download)
+			IND += 1 
+			#yield scrapy.Request(path + '/download', callback = self.download) 
 
-        #next_page = response.css('a.pagination-next ::attr(href)').extract_first()
-        #if next_page:
-        #    yield scrapy.Request(response.urljoin(next_page), callback=self.parse)
+		next_page = response.css('a.pagination-next ::attr(href)').extract_first() 
+		if next_page: 
+			yield scrapy.Request(response.urljoin(next_page), callback=self.parse)
 
 
 	def parseDetails(self, response): 
