@@ -13,7 +13,13 @@ BOT_NAME = 'softmoni'
 
 SPIDER_MODULES = ['softmoni.spiders']
 NEWSPIDER_MODULE = 'softmoni.spiders'
+#DEFAULT_ITEM_CLASS = 'softmoni.items.SoftmoniItem'
 
+#ITEM_PIPELINES = [
+#	'softmoni.pipelines.SoftmoniPipeline',
+#	'softmoni.pipelines.FilterWordsPipeline',
+#	'softmoni.pipelines.MySQLStorePipeline',
+#]
 
 #DB_SERVER = 'MySQLdb'
 #DB_CONNECT = {

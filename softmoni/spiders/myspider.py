@@ -4,7 +4,7 @@ import scrapy
 from softmoni.items import ImagedownloadItem
 
 class SoftmoniSpider(scrapy.Spider):
-	name = 'softmonispider'
+	name = 'softmoni'
 	start_urls = ['https://en.softonic.com/windows/best-software']
 
 	def parse(self, response): 
@@ -14,7 +14,7 @@ class SoftmoniSpider(scrapy.Spider):
 			path = item.xpath(strpath).extract_first()
 			yield scrapy.Request(path, callback = self.parseDetails)
 			IND += 1 
-			#yield scrapy.Request(path + '/download', callback = self.download) 
+			yield scrapy.Request(path + '/download', callback = self.download) 
 
 		next_page = response.css('a.pagination-next ::attr(href)').extract_first() 
 		if next_page: 
@@ -30,9 +30,10 @@ class SoftmoniSpider(scrapy.Spider):
 			title = '{:s}'.format(name)
 		description = response.xpath('normalize-space(.//*[@id="app-softonic-review"]/article)').extract_first()
 		os = response.xpath('normalize-space(.//p[@itemprop=$val]/text())', val='operatingSystem').extract_first()
-		#yield ImagedownloadItem( 
-			#	image_urls = screenshots 
-			#) 
+		screenshots = response.xpath('//a[@class=$val]/@href', val='gallery__media-links').extract()
+		yield ImagedownloadItem( 
+			image_urls = screenshots 
+			) 
 		yield { 
 			'title': title, 
 			'description': description, 
