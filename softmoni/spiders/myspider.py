@@ -25,12 +25,12 @@ class SoftmoniSpider(scrapy.Spider):
 		name = response.xpath('//h1[@class=$val]/text()', val='media-app__title').extract_first()
 		vers = response.xpath('//h1[@class=$val]/span/text()', val='media-app__title').extract_first()
 		try: 
-			title = '{:s} {:s}'.format(name, vers)
+			title = repr('{:s} {:s}'.format(name, vers))
 		except:
-			title = '{:s}'.format(name)
-		description = response.xpath('normalize-space(.//*[@id="app-softonic-review"]/article)').extract_first()
-		os = response.xpath('normalize-space(.//p[@itemprop=$val]/text())', val='operatingSystem').extract_first()
-		screenshots = response.xpath('//a[@class=$val]/@href', val='gallery__media-links').extract()
+			title = repr('{:s}'.format(name))
+		description = repr(response.xpath('normalize-space(.//*[@id="app-softonic-review"]/article)').extract_first())
+		os = repr(response.xpath('normalize-space(.//p[@itemprop=$val]/text())', val='operatingSystem').extract_first())
+		screenshots = repr(response.xpath('//a[@class=$val]/@href', val='gallery__media-links').extract())
 		yield ImagedownloadItem( 
 			image_urls = screenshots 
 			) 

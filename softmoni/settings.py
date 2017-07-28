@@ -13,27 +13,21 @@ BOT_NAME = 'softmoni'
 
 SPIDER_MODULES = ['softmoni.spiders']
 NEWSPIDER_MODULE = 'softmoni.spiders'
-#DEFAULT_ITEM_CLASS = 'softmoni.items.SoftmoniItem'
-
-#ITEM_PIPELINES = [
-#	'softmoni.pipelines.SoftmoniPipeline',
-#	'softmoni.pipelines.FilterWordsPipeline',
-#	'softmoni.pipelines.MySQLStorePipeline',
-#]
-
-#DB_SERVER = 'MySQLdb'
-#DB_CONNECT = {
-#    'db': 'testdb',
-#    'user': 'testuser',
-#    'passwd': 'yqeadm1',
-#    'host': 'localhost',
-#    'charset': 'utf8',
-#    'use_unicode': True,
-#}
 
 
-#IMAGES_STORE =  './loco'
-#FILES_STORE = './loco/exec'
+DB_SERVER = 'MySQLdb'
+DB_CONNECT = {
+    'db': 'testdb',
+    'user': 'testuser',
+    'passwd': 'yqeadm1',
+    'host': 'localhost',
+    'charset': 'utf8',
+    'use_unicode': True,
+}
+
+
+IMAGES_STORE =  './loco'
+FILES_STORE = './loco/exec'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -85,11 +79,11 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'scrapy.pipelines.images.ImagesPipeline': 1,
-#    'scrapy.pipelines.files.FilesPipeline': 1,
-#    'softmoni.pipelines.SoftmoniPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'scrapy.pipelines.images.ImagesPipeline': 1,
+    'scrapy.pipelines.files.FilesPipeline': 1,
+    'softmoni.pipelines.SoftmoniPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

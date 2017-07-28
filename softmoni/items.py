@@ -24,7 +24,7 @@ class ImagedownloadItem(scrapy.Item):
 class FiledownloadItem(scrapy.Item):
     file_urls = scrapy.Field()
     files = scrapy.Field()
-
+pass
 #class WebsiteLoader(XPathItemLoader):
 #	default_item_class = SoftmoniItem
 #	default_output_processor = TakeFirst()
